@@ -17,5 +17,6 @@ public class josephusDriver {
 
         System.out.printf("\nCircle size of (%d) people:    Survivor at " +
                           "position (%d)", CIRCLE_SIZE, survivor);
+
     }
 }
