@@ -23,11 +23,13 @@ public class CircularLinkedList {
     }
 
 
-    private Node firstPerson;  // Person located at position 1 who starts the killing
-    private int circleSize;    // # of people originally located in the circle
+    private Node firstPerson;      // Person located at position 1 who starts the killing
+    private int circleSize;        // # of people originally located in the circle
+    private boolean printCircle;   // if True, the remaining circle will be printed after each iteration
 
-    public CircularLinkedList(int circleSize) {
+    public CircularLinkedList(int circleSize, boolean printCircle) {
         this.circleSize = circleSize;
+        this.printCircle = printCircle;
         createCircle();        // Call internal method to create the initial circle
     }
 
@@ -56,20 +58,24 @@ public class CircularLinkedList {
         while (killer.next != killer) {
 
             // Check if a new loop is starting, if so, re-print the remaining people
-            int killerPos = killer.POSITION;
-            int killedPos = killer.next.POSITION;
-            if ((killerPos > killedPos) || (killer.equals(firstPerson)))
-                printCLL(killer);
+            // Only print if client selected True for print variable
+            if (printCircle) {
+                int killerPos = killer.POSITION;
+                int killedPos = killer.next.POSITION;
+                if ((killerPos > killedPos) || (killer.equals(firstPerson)))
+                    printCLL(killer);
+            }
 
             // Remove the next person from the CLL as they are killed and decrement size
             killer.next = killer.next.next;
             killer = killer.next;
             circleSize--;
         }
-        // Print final CLL with one person and return their position
-        System.out.println(killer.POSITION + " -> ");
-        return killer.POSITION;
+        // Print final CLL with one person if client wanted it and return the position
+        if (printCircle)
+            System.out.println(killer.POSITION + " -> ");
 
+        return killer.POSITION;
     }
 
     /**

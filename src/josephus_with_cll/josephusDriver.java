@@ -8,8 +8,9 @@ public class josephusDriver {
     public static void main(String[] args) {
 
         // Starting number of people in the circle. Data validation not performed. Value must be >= 2
-        final int CIRCLE_SIZE = 2;
-        CircularLinkedList josephusCircle = new CircularLinkedList(CIRCLE_SIZE);
+        final int CIRCLE_SIZE = 0;
+        final boolean PRINT_CIRCLE = false;
+        CircularLinkedList josephusCircle = new CircularLinkedList(CIRCLE_SIZE, PRINT_CIRCLE);
 
         // Loops through circle until only one survivor remains'
         System.out.println("\n----Start Josephus Circle Problem----\n");
